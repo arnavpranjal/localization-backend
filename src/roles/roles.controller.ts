@@ -16,6 +16,10 @@ export class RolesController {
   async getRoles() {
     return this.rolesService.getRoles();
   }
+  @Get(':roleId')
+  async getRoleById(@Param('roleId') roleId: string) {
+    return this.rolesService.getRoleById(roleId);
+  }
   @Post()
   async createRole(@Body('role') role: string) {
     return this.rolesService.createRole(role);

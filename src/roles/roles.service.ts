@@ -10,7 +10,18 @@ export class RolesService {
   async getRoles() {
     return this.prisma.role.findMany();
   }
+  async getRoleById(roleId: string) {
+    // return { systemName: 'an', displayName: 'ixuhi', default: 'false' };
+    const role = await this.prisma.role.findUnique({
+      where: { systemName: roleId },
+    });
 
+    if (!role) {
+      throw new NotFoundException(`${role} not found`);
+    } else {
+      return role;
+    }
+  }
   async createRole(role: string) {
     return this.prisma.role.create({
       data: {

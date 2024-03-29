@@ -16,9 +16,11 @@ generator client {
 
 
 model role {
-  systemName String @id
+  systemName String @id 
   displayName String 
   default Boolean @default(false)
+
+   @@index(fields: [systemName])
 
 }
 model stage {
